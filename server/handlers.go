@@ -578,7 +578,7 @@ func getURL(r *http.Request, proxyPort string) *url.URL {
 	} else if proto := r.Header.Get("X-Forwarded-Proto"); proto != "" {
 		u.Scheme = proto
 	} else {
-		u.Scheme = "http"
+		u.Scheme = "https"
 	}
 
 	if u.Host == "" {

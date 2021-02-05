@@ -127,11 +127,11 @@ func (s *LocalStorage) Put(token string, filename string, reader io.Reader, cont
 
 	path := filepath.Join(s.basedir, token)
 
-	if err = os.MkdirAll(path, 0700); err != nil && !os.IsExist(err) {
+	if err = os.MkdirAll(path, 0750); err != nil && !os.IsExist(err) {
 		return err
 	}
 
-	if f, err = os.OpenFile(filepath.Join(path, filename), os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0600); err != nil {
+	if f, err = os.OpenFile(filepath.Join(path, filename), os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0640); err != nil {
 		return err
 	}
 

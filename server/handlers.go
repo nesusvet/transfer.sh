@@ -345,7 +345,7 @@ func (s *Server) postHandler(w http.ResponseWriter, r *http.Request) {
 
 			filename = url.PathEscape(filename)
 			relativeURL, _ := url.Parse(path.Join(s.proxyPath, token, filename))
-			fmt.Fprintln(w, getURL(r, s.proxyPort).ResolveReference(relativeURL).String())
+			fmt.Fprintln(w, getURL(r, s.proxyPort).ResolveReference(relativeURL).String()+"\n")
 
 			cleanTmpFile(file)
 		}
@@ -514,7 +514,7 @@ func (s *Server) putHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("X-Url-Delete", resolveURL(r, deleteURL, s.proxyPort))
 
-	fmt.Fprint(w, resolveURL(r, relativeURL, s.proxyPort))
+	fmt.Fprint(w, resolveURL(r, relativeURL, s.proxyPort)+"\n")
 }
 
 func resolveURL(r *http.Request, u *url.URL, proxyPort string) string {
